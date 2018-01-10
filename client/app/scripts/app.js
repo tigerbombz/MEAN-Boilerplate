@@ -11,7 +11,6 @@
 angular
   .module('clientApp', [
     'ngAnimate',
-    'ngAria',
     'ngCookies',
     'ngMessages',
     'ngResource',
@@ -19,7 +18,8 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode(true); // <-- ADD THIS
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',

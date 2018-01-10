@@ -13,6 +13,9 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <base href="/" />
+
   </head>
   <body ng-app="clientApp">
     <!--[if lte IE 8]>
@@ -31,16 +34,16 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-
-            <a class="navbar-brand" href="#/">client</a>
+            <!-- we removed the hash -->
+            <a class="navbar-brand" href="/">client</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
+            <!-- remove all the hashes -->
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+              <li class="active"><a href="/">Home</a></li>
+              <li><a ng-href="/about">About</a></li>
+              <li><a ng-href="/">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -53,7 +56,7 @@
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+        <p><i class="fa fa-heart"></i> from the Yeoman team</p>
       </div>
     </div>
 

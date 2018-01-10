@@ -16,13 +16,14 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+    cdnify: 'grunt-google-cdn',
+    configureProxies: 'grunt-connect-proxy' // <-- ADD HERE
   });
 
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: '../server/dist' // <-- MODIFY
   };
 
   // Define the configuration for all the tasks
@@ -75,11 +76,19 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
+       proxies: [ // <-- ADD
+        {
+          context: '/api',
+          host: 'localhost',
+          port: 3000
+        }
+      ],
       livereload: {
         options: {
           open: true,
           middleware: function (connect) {
             return [
+              require('grunt-connect-proxy/lib/utils').proxyRequest, // <-- HERE
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -167,6 +176,9 @@ module.exports = function (grunt) {
           ]
         }]
       },
+       options: { // <-- ADD THIS
+        force: true
+      },
       server: '.tmp'
     },
 
@@ -224,7 +236,7 @@ module.exports = function (grunt) {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
-    }, 
+    },
 
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
@@ -469,6 +481,7 @@ module.exports = function (grunt) {
       'clean:server',
       'wiredep',
       'concurrent:server',
+      'configureProxies', //<-- ADD THIS
       'postcss:server',
       'connect:livereload',
       'watch'

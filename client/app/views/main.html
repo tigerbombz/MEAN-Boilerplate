@@ -4,7 +4,16 @@
     <img src="images/yeoman.png" alt="I'm Yeoman"><br>
     Always a pleasure scaffolding your apps.
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+  <!-- Right here, this guy. Note the removed Hash as well. -->
+  <p><a class="btn btn-lg btn-success" ng-href="/">Splendid! <i class="fa fa-check"></i></a></p>
+</div>
+
+<div class="row users">
+  <ul>
+    <li ng-repeat="user in main.awesomeUsers track by user._id">
+      {{user.email}}
+    </li>
+  </ul>
 </div>
 
 <div class="row marketing">
